@@ -1,0 +1,65 @@
+###Listar todos los usuarios
+GET http://localhost:3000/api/v1/usuarios HTTP/1.1
+
+
+###ver un usuario en especifico
+GET https://backend-sigires-1.onrender.com/api/v1/usuarios/bd6f4e52-5e4e-49ff-b63e-a9a9ce501b21 HTTP/1.1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiZDZmNGU1Mi01ZTRlLTQ5ZmYtYjYzZS1hOWE5Y2U1MDFiMjEiLCJpYXQiOjE3MjMxMzE1NjksImV4cCI6MTcyMzEzNTE2OX0.ZsvFKPIk58Ivsv5bIGiy3h5W_GuPurWFAck6PMazXAQ
+
+###
+GET https://backend-sigires-1.onrender.com/api/v1/token/verify HTTP/1.1
+
+###
+POST http://localhost:3000/api/v1/usuarios HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "user",
+    "password": "user",
+    "isAdmin": 0
+}
+
+###
+POST https://backend-sigires-1.onrender.com/api/v1/usuarios HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "user",
+    "password": "user",
+    "isAdmin": 0
+}
+
+###
+PATCH https://backend-sigires-1.onrender.com/api/v1/usuarios/bd6f4e52-5e4e-49ff-b63e-a9a9ce501b21 HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiZDZmNGU1Mi01ZTRlLTQ5ZmYtYjYzZS1hOWE5Y2U1MDFiMjEiLCJpYXQiOjE3MjMxMzUxOTAsImV4cCI6MTcyMzEzODc5MH0.8CVcdM9vUYdJYbLrtz9Cyv5Xr9CwkYchlKtqnuKtkro
+
+{
+    "name": "admin"
+}
+
+###Loguerase con un usuario
+POST http://localhost:3000/api/v1/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "admin9",
+    "password": "admin9"
+}
+
+
+###
+DELETE https://backend-sigires-1.onrender.com/api/v1/usuarios/9bb2473f-393e-46fd-9520-fef9bd47974a HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiZDZmNGU1Mi01ZTRlLTQ5ZmYtYjYzZS1hOWE5Y2U1MDFiMjEiLCJpYXQiOjE3MjI5NjIyNjAsImV4cCI6MTcyMjk2NTg2MH0.DIS5o6uPMDMQqWUBNXd3S8dCUHNM-No-04ZHLOEC4T4
+
+###
+### Crear un usuario
+POST https://backend-sigires-1.onrender.com/api/v1/usuarios HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "admin3",
+    "password": "admin3",
+    "isAdmin": 1
+}

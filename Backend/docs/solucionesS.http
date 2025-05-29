@@ -1,0 +1,37 @@
+POST http://localhost:3000/api/v1/soluciones-stock HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre_solucion": "hola3",
+    "recursos": [
+        { "recurso_id": 47, "cantidad_usada": 10 },
+        { "recurso_id": 48, "cantidad_usada": 20 }
+    ]
+}
+
+###
+GET http://localhost:3000/api/v1/soluciones HTTP/1.1
+
+###
+ GET http://localhost:3000/api/v1/soluciones/1 HTTP/1.1
+
+###
+PUT http://localhost:3000/api/v1/soluciones/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre_solucion": "prueba 2",
+    "medios_cultivo": "m prueba 2",
+    "recursos": [
+        { "recurso_id": 70, "cantidad_usada": 15 },  
+        { "recurso_id": 71, "cantidad_usada": 25 },
+        { "recurso_id": 72, "cantidad_usada": 25 }  
+    ]
+}
+
+###eliminar solucion
+DELETE http://localhost:3000/api/v1/soluciones/14 HTTP/1.1
+
+###usar solucion
+POST http://localhost:3000/api/v1/soluciones/18/usar HTTP/1.1
+Content-Type: application/json
