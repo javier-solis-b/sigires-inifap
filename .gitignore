@@ -1,5 +1,6 @@
 .DS_Store
 Thumbs.db
+node_modules/
+frontend/node_modules/
 .env
-Backend/src/Shared/env.js
 
