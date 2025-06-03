@@ -17,7 +17,10 @@ export default {
       year: new Date().getFullYear()
     };
   },
-  components: {}
+  components: {},
+  mounted() {
+    document.title = 'SIGIRES INIFAP';
+  }
 }
 </script>
 

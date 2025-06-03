@@ -100,110 +100,122 @@ export default {
       this.kpis[2].value = new Set(this.recursos.map(r => r.tipo_recurso)).size;
     },
     generarGraficaAlmacenes() {
-      const ctx = document.getElementById('almacenChart').getContext('2d');
-      const almacenesData = this.almacenes.map(almacen => {
-        return {
-          nombre: almacen.nombre_almacen,
-          cantidad: this.recursos.filter(recurso => recurso.catalogo_id === almacen.id).length
-        };
-      });
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: almacenesData.map(almacen => almacen.nombre),
-          datasets: [{
-            label: 'Cantidad de Recursos',
-            data: almacenesData.map(almacen => almacen.cantidad),
-            backgroundColor: almacenesData.map((_, i) => `rgba(${54 + i*30}, ${162 - i*10}, 235, 0.8)`),
-            borderColor: almacenesData.map((_, i) => `rgba(${54 + i*30}, ${162 - i*10}, 235, 1)`),
-            borderWidth: 2,
-            borderRadius: 8,
-            hoverBackgroundColor: 'rgba(12, 147, 74, 0.8)',
-            hoverBorderColor: 'rgba(12, 147, 74, 1)'
-          }]
-        },
-        options: {
-          responsive: true,
-          animation: {
-            duration: 1200,
-            easing: 'easeInOutQuart'
+      try {
+        const canvas = document.getElementById('almacenChart');
+        if (!canvas) throw new Error('No se encontró el canvas con id almacenChart');
+        const ctx = canvas.getContext('2d');
+        const almacenesData = this.almacenes.map(almacen => {
+          return {
+            nombre: almacen.nombre_almacen,
+            cantidad: this.recursos.filter(recurso => recurso.catalogo_id === almacen.id).length
+          };
+        });
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: almacenesData.map(almacen => almacen.nombre),
+            datasets: [{
+              label: 'Cantidad de Recursos',
+              data: almacenesData.map(almacen => almacen.cantidad),
+              backgroundColor: almacenesData.map((_, i) => `rgba(${54 + i*30}, ${162 - i*10}, 235, 0.8)`),
+              borderColor: almacenesData.map((_, i) => `rgba(${54 + i*30}, ${162 - i*10}, 235, 1)`),
+              borderWidth: 2,
+              borderRadius: 8,
+              hoverBackgroundColor: 'rgba(12, 147, 74, 0.8)',
+              hoverBorderColor: 'rgba(12, 147, 74, 1)'
+            }]
           },
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              backgroundColor: '#0c934a',
-              titleColor: '#fff',
-              bodyColor: '#fff',
-              borderColor: '#fff',
-              borderWidth: 1
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              grid: { color: '#e0e0e0' },
-              ticks: { color: '#0c934a', font: { weight: 'bold' } }
+          options: {
+            responsive: true,
+            animation: {
+              duration: 1200,
+              easing: 'easeInOutQuart'
             },
-            x: {
-              grid: { display: false },
-              ticks: { color: '#0c934a', font: { weight: 'bold' } }
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#0c934a',
+                titleColor: '#fff',
+                bodyColor: '#fff',
+                borderColor: '#fff',
+                borderWidth: 1
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: { color: '#e0e0e0' },
+                ticks: { color: '#0c934a', font: { weight: 'bold' } }
+              },
+              x: {
+                grid: { display: false },
+                ticks: { color: '#0c934a', font: { weight: 'bold' } }
+              }
             }
           }
-        }
-      });
+        });
+      } catch (error) {
+        console.error('Error al generar gráfica de almacenes:', error);
+      }
     },
     generarGraficaTiposRecursos() {
-      const ctx = document.getElementById('tipoRecursoChart').getContext('2d');
-      const tiposRecursoData = this.recursos.reduce((acc, recurso) => {
-        acc[recurso.tipo_recurso] = (acc[recurso.tipo_recurso] || 0) + 1;
-        return acc;
-      }, {});
-      const colors = [
-        'rgba(255, 99, 132, 0.9)',
-        'rgba(54, 162, 235, 0.9)',
-        'rgba(255, 206, 86, 0.9)',
-        'rgba(75, 192, 192, 0.9)',
-        'rgba(153, 102, 255, 0.9)',
-        'rgba(255, 159, 64, 0.9)'
-      ];
-      new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: Object.keys(tiposRecursoData),
-          datasets: [{
-            label: 'Distribución de Tipos de Recursos',
-            data: Object.values(tiposRecursoData),
-            backgroundColor: colors,
-            borderColor: '#fff',
-            borderWidth: 2,
-            hoverOffset: 16
-          }]
-        },
-        options: {
-          responsive: true,
-          cutout: '70%',
-          animation: {
-            animateRotate: true,
-            animateScale: true,
-            duration: 1400,
-            easing: 'easeInOutCubic'
-          },
-          plugins: {
-            legend: {
-              display: true,
-              position: 'bottom',
-              labels: { color: '#0c934a', font: { weight: 'bold' } }
-            },
-            tooltip: {
-              backgroundColor: '#3498db',
-              titleColor: '#fff',
-              bodyColor: '#fff',
+      try {
+        const canvas = document.getElementById('tipoRecursoChart');
+        if (!canvas) throw new Error('No se encontró el canvas con id tipoRecursoChart');
+        const ctx = canvas.getContext('2d');
+        const tiposRecursoData = this.recursos.reduce((acc, recurso) => {
+          acc[recurso.tipo_recurso] = (acc[recurso.tipo_recurso] || 0) + 1;
+          return acc;
+        }, {});
+        const colors = [
+          'rgba(255, 99, 132, 0.9)',
+          'rgba(54, 162, 235, 0.9)',
+          'rgba(255, 206, 86, 0.9)',
+          'rgba(75, 192, 192, 0.9)',
+          'rgba(153, 102, 255, 0.9)',
+          'rgba(255, 159, 64, 0.9)'
+        ];
+        new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: Object.keys(tiposRecursoData),
+            datasets: [{
+              label: 'Distribución de Tipos de Recursos',
+              data: Object.values(tiposRecursoData),
+              backgroundColor: colors,
               borderColor: '#fff',
-              borderWidth: 1
+              borderWidth: 2,
+              hoverOffset: 16
+            }]
+          },
+          options: {
+            responsive: true,
+            cutout: '70%',
+            animation: {
+              animateRotate: true,
+              animateScale: true,
+              duration: 1400,
+              easing: 'easeInOutCubic'
+            },
+            plugins: {
+              legend: {
+                display: true,
+                position: 'bottom',
+                labels: { color: '#0c934a', font: { weight: 'bold' } }
+              },
+              tooltip: {
+                backgroundColor: '#3498db',
+                titleColor: '#fff',
+                bodyColor: '#fff',
+                borderColor: '#fff',
+                borderWidth: 1
+              }
             }
           }
-        }
-      });
+        });
+      } catch (error) {
+        console.error('Error al generar gráfica de tipos de recursos:', error);
+      }
     }
   }
 };
