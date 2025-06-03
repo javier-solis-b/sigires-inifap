@@ -1,3 +1,5 @@
+Vista previa del proyecto:
+ [Ir a la pagina de pruebas](https://silly-naiad-763080.netlify.app/)
 # Inventario INIFAP
 
 Este proyecto es un sistema de inventario desarrollado para el INIFAP. Está compuesto por un backend en Node.js y un frontend en Vue.js, permitiendo la gestión de almacenes, recursos, soluciones y usuarios.
