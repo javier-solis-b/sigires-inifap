@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import { env } from '../../Shared/env.js';
 
 export class TokenService {
   static isValid(token) {
@@ -7,7 +6,7 @@ export class TokenService {
       return false;
     }
     try {
-      jwt.verify(token, env('JWT_SECRET_KEY')); // Usé process.env para acceder a la variable de entorno
+      jwt.verify(token, process.env.JWT_SECRET_KEY); // Usar process.env directamente
     } catch (error) {
       return false;
     }
@@ -18,7 +17,7 @@ export class TokenService {
   static decode(token) {
     if (!token) return null;
     try {
-      return jwt.verify(token, env('JWT_SECRET_KEY'));
+      return jwt.verify(token, process.env.JWT_SECRET_KEY);
     } catch (error) {
       return null;
     }
