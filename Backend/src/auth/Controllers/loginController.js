@@ -1,6 +1,7 @@
 import { PasswordService } from "../Services/PasswordService.js";
 import { User } from "../../Users/Models/User.js";
 import jwt from 'jsonwebtoken'; 
+import { env } from "../../Shared/env.js";
 
 export const loginController = async (request, response) => {
     const { name, password } = request.body;
@@ -15,7 +16,7 @@ export const loginController = async (request, response) => {
         return response.status(401).json({ message: 'La contraseña es incorrecta' });
     }
 
-    const token = jwt.sign({ userId: user.id, isAdmin: user.isAdmin }, process.env.JWT_SECRET_KEY);
+    const token = jwt.sign({ userId: user.id, isAdmin: user.isAdmin }, env('JWT_SECRET_KEY'));
 
     const jsonResponse = {
         message: "¡Usuario logueado correctamente!",
